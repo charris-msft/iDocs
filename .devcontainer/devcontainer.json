@@ -1,5 +1,5 @@
 {
-    "name": "Azure Search OpenAI Demo",
+    "name": "iDoc Python CookieCutter Deployments",
     "image": "mcr.microsoft.com/devcontainers/python:3.11",
     "features": {
         "ghcr.io/devcontainers/features/node:1": {
@@ -9,7 +9,11 @@
         "ghcr.io/devcontainers/features/powershell:1.2.0": {},
         "ghcr.io/devcontainers/features/azure-cli:1.2.2": {},
         "ghcr.io/azure/azure-dev/azd:latest": {},
-        "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+        "ghcr.io/devcontainers/features/dotnet:2": {
+            "version": "7.0",
+            "additionalVersions": "8.0"
+        }
     },
     "customizations": {
         "vscode": {
@@ -17,7 +21,9 @@
                 "ms-azuretools.azure-dev",
                 "ms-azuretools.vscode-bicep",
                 "ms-python.python",
-                "esbenp.prettier-vscode"
+                "esbenp.prettier-vscode",
+                "ms-toolsai.jupyter",
+                "ms-dotnettools.dotnet-interactive-vscode"
             ]
         },
         "codespaces": {
@@ -29,7 +35,7 @@
     "forwardPorts": [
         50505
     ],
-    "postCreateCommand": "",
+    "postCreateCommand": "pip install -r requirements.txt",
     "postAttachCommand": "code /workspaces/iDocs/DEPLOY.ipynb",
     "remoteUser": "vscode",
     "hostRequirements": {
