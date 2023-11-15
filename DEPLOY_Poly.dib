@@ -340,9 +340,15 @@ print(f"Current directory is: {os.getcwd()}")
 
 # azd init --template $AZD_TEMPLATE_NAME
 get-location
-# set-location ./azdtest28
+Set-Location /workspaces/iDocs
+Remove-Item -Recurse -Force /workspaces/iDocs/azdtest28
+mkdir azdtest28
+set-location /workspaces/iDocs/azdtest28
+get-location
 
-azd init --template azure-fastapi-postgres-flexible-appservice
+#!csharp
+
+!azd init --template azure-fastapi-postgres-flexible-appservice
 
 #!markdown
 
@@ -412,6 +418,11 @@ All subsequent instructions are the same as the Learn Doc, so not including them
 
 ## Helpers
 
+#!pwsh
+
+$name = read-host "What's your name?"
+Write-host $name
+
 #!csharp
 
 # RESET
@@ -421,49 +432,6 @@ import os
 os.chdir("/workspaces")
 !rm -rf azdtest
 !rm -rf $env_name
-#endregion
-
-#!csharp
-
-# DROPDOWN FOR SINGLE ITEM
-
-#region code
-# SELECT SUBSCRIPTION
-
-import json
-import os
-import ipywidgets as widgets
-from IPython.display import display
-
-# Your provided JSON list of subscriptions
-subs_list = !az account list -o json
-subs = json.loads("".join(subs_list))
-
-# Sort the subscriptions by name
-sorted_subs = sorted(subs, key=lambda x: x['name'])
-
-# Create a dropdown menu
-dropdown = widgets.Dropdown(
-    options=[(sub['name'], sub['id']) for sub in sorted_subs],
-    description='Subscriptions:',
-    disabled=False,
-)
-
-# Handler for updating global variable on selection change
-subscription_id = subs[0]['id']  # Initialize a global variable
-
-def on_dropdown_change(change):
-    global subscription_id
-    if change['type'] == 'change' and change['name'] == 'value':
-        subscription_id = change['new']
-        os.environ['AZURE_SUBSCRIPTION_ID'] = change['new']
-        print(f"Subscription ID is: {subscription_id}")  # Optional: for confirmation
-
-# Assign the event handler to the dropdown changes
-dropdown.observe(on_dropdown_change, names='value')
-
-# Display the dropdown
-display(dropdown)
 #endregion
 
 #!csharp
@@ -480,36 +448,6 @@ display(dropdown)
 # os.environ['AZD_TEMPLATE_NAME']     = 'azure-django-postgres-flexible-appservice'
 # os.environ['AZURE_LOCATION']        = 'eastus'
 # os.environ['AZURE_SUBSCRIPTION_ID'] = '2554f64d-0419-4e39-8121-5e01270578ea' # ScottHunter_TeamDemoSub
-
-#!csharp
-
-# INSTALL DOCKER DESKTOP
-
-#region code
-
-# Add Docker's official GPG key:
-!sudo apt-get update
-!sudo apt-get install -y ca-certificates curl gnupg
-!sudo install -m 0755 -d /etc/apt/keyrings
-# !curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-!sudo chmod a+r /etc/apt/keyrings/docker.gpg
-
-# Add the repository to Apt sources:
-!echo \
-  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
-  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-!sudo apt-get update
-
-!sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-
-!sudo service docker start
-
-# !sudo systemctl start docker
-
-!sudo docker run hello-world
-
-#endregion
 
 #!pwsh
 
