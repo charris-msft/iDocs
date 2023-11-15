@@ -20,6 +20,7 @@
             "extensions": [
                 "ms-azuretools.azure-dev",
                 "ms-azuretools.vscode-bicep",
+                "ms-vscode.powershell",
                 "ms-python.python",
                 "esbenp.prettier-vscode",
                 "ms-toolsai.jupyter",
