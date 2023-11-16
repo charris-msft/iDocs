@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":["c#","cs"],"languageName":"C#","name":"csharp"},{"aliases":["f#","fs"],"languageName":"F#","name":"fsharp"},{"aliases":[],"languageName":"HTML","name":"html"},{"aliases":[],"languageName":"HTTP","name":"http"},{"aliases":["js"],"languageName":"JavaScript","name":"javascript"},{"aliases":[],"languageName":"KQL","name":"kql"},{"aliases":[],"languageName":"Mermaid","name":"mermaid"},{"aliases":["powershell"],"languageName":"PowerShell","name":"pwsh"},{"aliases":[],"languageName":"SQL","name":"sql"},{"aliases":[],"name":"value"}]}}
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":["c#","cs"],"languageName":"C#","name":"csharp"},{"aliases":["f#","fs"],"languageName":"F#","name":"fsharp"},{"aliases":[],"languageName":"HTML","name":"html"},{"aliases":[],"languageName":"HTTP","name":"http"},{"aliases":["js"],"languageName":"JavaScript","name":"javascript"},{"aliases":[],"languageName":"KQL","name":"kql"},{"aliases":[],"languageName":"Mermaid","name":"mermaid"},{"aliases":["powershell"],"languageName":"PowerShell","name":"pwsh"},{"aliases":[],"languageName":"python","name":"pythonkernel"},{"aliases":[],"languageName":"SQL","name":"sql"},{"aliases":[],"name":"value"}]}}
 
 #!markdown
 
@@ -155,7 +155,7 @@ The GitHub repository (last column) is only provided for reference purposes. You
 
 Execute the `ENVIRONMENT CONFIG FORM` cell below to configure the deployment settings.
 
-#!csharp
+#!pythonkernel
 
 # ENVIRONMENT CONFIG FORM
 
@@ -452,3 +452,21 @@ os.chdir("/workspaces")
 #!pwsh
 
 #!set --value @pwsh:LASTEXITCODE --name LASTEXITCODE
+
+#!pwsh
+
+# Connect a Python Kernel
+#!connect jupyter --kernel-name pythonkernel --kernel-spec python3
+
+#!pwsh
+
+# this doesn't work so have to run in terminal
+#! pip install -r requirements.txt
+
+#!pythonkernel
+
+import ipywidgets as widgets
+form = widgets.VBox([
+    widgets.HTML(value="Select the <b>azd template name</b> or accept the default:") 
+])
+display(form)

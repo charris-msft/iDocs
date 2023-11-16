@@ -24,7 +24,9 @@
                 "ms-python.python",
                 "esbenp.prettier-vscode",
                 "ms-toolsai.jupyter",
-                "ms-dotnettools.dotnet-interactive-vscode"
+                "ms-dotnettools.dotnet-interactive-vscode",
+                "GitHub.copilot",
+                "GitHub.copilot-chat"
             ]
         },
         "codespaces": {

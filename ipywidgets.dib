@@ -1,0 +1,25 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":["c#","cs"],"languageName":"C#","name":"csharp"},{"aliases":["f#","fs"],"languageName":"F#","name":"fsharp"},{"aliases":[],"languageName":"HTML","name":"html"},{"aliases":[],"languageName":"HTTP","name":"http"},{"aliases":["js"],"languageName":"JavaScript","name":"javascript"},{"aliases":[],"languageName":"KQL","name":"kql"},{"aliases":[],"languageName":"Mermaid","name":"mermaid"},{"aliases":["powershell"],"languageName":"PowerShell","name":"pwsh"},{"aliases":[],"languageName":"python","name":"pythonkernel"},{"aliases":[],"languageName":"SQL","name":"sql"},{"aliases":[],"name":"value"}]}}
+
+#!markdown
+
+## Helpers
+
+#!pwsh
+
+# Connect a Python Kernel
+#!connect jupyter --kernel-name pythonkernel --kernel-spec python3
+
+#!pwsh
+
+# this doesn't appear to work in a cell so have to run in terminal
+#! pip install -r requirements.txt
+
+#!pythonkernel
+
+import ipywidgets as widgets
+form = widgets.VBox([
+    widgets.HTML(value="Hello Polly!") 
+])
+display(form)
