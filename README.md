@@ -1,5 +1,2 @@
-# Please wait...
-
-The DEPLOY notebook will open momentarily.
-
-Enjoy!
+#iDocs
+A modern, intelligent and interactive approach to documentation.
